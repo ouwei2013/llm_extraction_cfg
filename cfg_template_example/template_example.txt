@@ -1,0 +1,33 @@
+
+template
+""" 
+    ?start: value
+
+    ?value: syptoms
+    syptoms : "["  [syptm ("," syptm)*]  "]" 
+    syptm : "{" qt zhengzhuang qt ":" qt zhengzhuang_txt+  qt  "," qt buwei qt ":" qt buwei_txt+ qt "}"
+    qt : /"/
+    zhengzhuang : /症状/
+    buwei : /部位/
+    zhengzhuang_txt : /(?<="症状":")[^"]+/
+    buwei_txt : /(?<="部位":")[^"]+/
+    string : ESCAPED_STRING
+    %import common.ESCAPED_STRING
+    %import common.SIGNED_NUMBER
+    %import common.WS
+
+    %ignore WS
+"""
+
+对应于如下的json格式
+
+
+
+json
+"""
+
+[{"症状":"发烧","部位":"头部"},{"症状":"疼痛","部位":"手"}......]
+
+
+
+"""
